@@ -11,7 +11,7 @@ This tool is used to automate some of the functions required to manage a kuberne
         - name : deployment name
         - replicas: Int replicas to scale deployment to
         - namespace: specific namespace defaults namespace 'default'
-    - sre info: lists deployment information
+    - sre info - lists deployment information
       Required Arguments:
         - deployment - Specified deployment to get info from
         - namespace - specifiied namespace deployment is in - defaults to 'default' namespace
