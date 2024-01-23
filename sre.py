@@ -3,7 +3,7 @@ from kubernetes import client, config
 from kubernetes.client.rest import ApiException
 
 config.load_kube_config()
-
+kube_client = client.AppsV1Api()
 
 @click.group()
 def cli():
@@ -13,7 +13,6 @@ def cli():
 @cli.command()
 @click.argument('namespace', default="")
 def list(namespace):
-  kube_client = client.AppsV1Api()
   try:
     if namespace != "":
         deployments = kube_client.list_namespaced_deployment(namespace=namespace)
@@ -35,7 +34,6 @@ def list(namespace):
 @click.argument('replicas', type=int)
 @click.argument('namespace')
 def scale(name, replicas: int, namespace="default"):
-  kube_client = client.AppsV1Api()
   try:
     body = {"spec": {"replicas": replicas}}
     kube_client.patch_namespaced_deployment_scale(name=name, namespace=namespace, body=body, pretty=True)
@@ -52,7 +50,6 @@ def scale(name, replicas: int, namespace="default"):
 @click.argument('deployment')
 @click.argument('namespace')
 def info(deployment, namespace="default"):
-  kube_client = client.AppsV1Api()
   try:
     deployment = kube_client.read_namespaced_deployment(deployment, namespace, pretty=True)
     click.echo(deployment.metadata)
