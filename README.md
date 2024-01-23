@@ -19,4 +19,4 @@ This tool is used to automate some of the functions required to manage a kuberne
 ## Installation instructions
   1. Clone the repo
   1. cd into the repository
-  2. run `pip install.`
+  2. run `pip install .`
